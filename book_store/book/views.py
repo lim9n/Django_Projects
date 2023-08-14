@@ -44,3 +44,5 @@ def edit_book(request,id):
 def delete_book(request,id):
       book=BookStoreModel.objects.get(pk=id).delete()
       return redirect(show_books)
+
+
