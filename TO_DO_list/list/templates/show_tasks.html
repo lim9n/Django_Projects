@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="width: 70%; margin:auto;">
+
+      {% if tasks %}
+      <h2>Tasks To Do</h2> 
+
+      <br>
+      <table class="table table-hover">
+            <thead>
+                  <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                  </tr>
+            </thead>
+            <tbody>
+                  {% for task in tasks %}
+                  <tr>
+                        <td>{{ task.taskTitle }}</td>
+                        <td>{{ task.taskDescription }}</td>
+                        <td> {% if task.is_completed %}
+                              Complete
+                              {% else %}
+                              Incomplete
+                              {% endif %}
+                        </td>
+                        <td>
+                              <a href="{% url 'edit_task' id=task.id%}" class="btn btn-primary btn-sm">Edit</a>
+                              <a href="{% url 'delete_task' id=task.id  %}" class="btn btn-danger btn-sm">Delete</a>
+                              <a href="{% url 'complete_task' id=task.id %}" class="btn btn-success btn-sm">Complete</a>
+
+
+
+                        </td>
+                  </tr>
+                  {% endfor %}
+            </tbody>
+      </table>
+
+      <a href="{% url 'add_task' %}" class="btn btn-primary btn-sm">Add More Task</a>
+
+      {% else %}
+      <h3>No list available</h3><br>
+      <a href="{% url 'add_task' %}" class="btn btn-primary btn-sm">Add Task</a>
+      {% endif %}
+
+</div>
+{% endblock %}
+
