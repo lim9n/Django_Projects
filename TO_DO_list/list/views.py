@@ -53,4 +53,3 @@ def complete_task(request, id):
 def completed_tasks(request):
     completed_tasks = TaskModel.objects.filter(is_completed=True)
     return render(request, 'completed_task.html', {'completed_tasks': completed_tasks})
-
